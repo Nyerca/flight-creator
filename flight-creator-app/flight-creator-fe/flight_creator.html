@@ -1,11 +1,11 @@
 <html lang="en" >
 <head>
-<link rel="stylesheet" href="./flight_creator_style.css">
+<link rel="stylesheet" href="./public/flight_creator_style.css">
 
   <script src='https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/vuetify@2.5.0/dist/vuetify.min.js'></script>
-<script src="http://backend:3000/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
 
 </head>
 <body>
@@ -120,11 +120,12 @@
 </div>
 <!-- partial -->
 
-
-<script>
+<script type="/module" >
 import io from 'socket.io-client';
-// var socket = io('http://backend:3000/labelNamespace');
-const socket = io();
+</script>
+<script>
+const socket = io('/labelNamespace');
+
 
 alldata = {
     items: [
