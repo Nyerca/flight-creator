@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
 
+/*
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 app.get('/flightcreator', (req, res) => {
   res.sendFile(__dirname + '/flight_creator.html');
 });
+*/
 
 /*
 io.on('connection', (socket) => {
@@ -67,6 +69,7 @@ const removeLines = (data, lines = []) => {
 
 var namespace = io.of('/labelNamespace');
 namespace.on('connection', function(socket) {
+	console.log('Connection')
 	fs.readFile('flights.txt', 'utf8', function (err,filedata) {
 			  if (err) {
 				return console.log(err);

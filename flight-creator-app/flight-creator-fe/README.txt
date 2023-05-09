@@ -13,4 +13,5 @@ Sets up error pages to be served from the /usr/share/nginx/html directory.
 
 docker build -t flight-creator-fe .
 
-docker run -d -p 80:80 --name flight-creator-fe-container flight-creator-fe
+
+docker run -d -p 80:80 --name flight-fe --network flight-network --link flight-be:backend flight-creator-fe

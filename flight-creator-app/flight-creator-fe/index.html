@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
@@ -11,7 +11,7 @@
   <script src='https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/vuetify@2.5.0/dist/vuetify.min.js'></script>
-<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -145,20 +145,38 @@
   </symbol>
 </svg>
 </div>
-
-<script>
+<script type="/module" >
+import io from 'socket.io-client';
+</script>
+<script  >
 /*
 alert(new Date((new Date(2022, 10, 10, 12, 3, 4)).getTime()))
 
 console.log((new Date(2022, 11, 9, 18, 24)).getTime())
 */
 
+console.log('start')
 
-var socket = io('/labelNamespace');
 
-alldata = {
+var alldata = {
 	flights: []
 }
+
+
+
+const socket = io('/labelNamespace');
+socket.on('connect', () => {
+  console.log('Connected to Socket.IO server');
+});
+
+socket.on('connect_error', (error) => {
+  console.error('Socket.IO connection error:', error);
+});
+    // Handle label event received from the server
+    socket.on('flights', (data) => {
+      console.log('Received label:', data);
+      // Update your UI or perform any necessary actions with the received data
+    });
 
 var app = new Vue({
   el: '#app',
